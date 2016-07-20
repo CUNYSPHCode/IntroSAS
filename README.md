@@ -12,3 +12,4 @@ Syllabus: _IntroSAS-Syllabus-07192016.docx_
 
 `datasets` folder: Data for exercises in class
 
+If you would like to use `git` and `github` on Windows, download and install [git](https://git-scm.com/download/win). Perhaps, this [tutorial](https://try.github.io) will help.
