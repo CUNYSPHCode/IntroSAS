@@ -6,7 +6,7 @@
 
 	b. Decide whether you want an ID statement
 
-	c. Pick options that you want (labels, noobs, double, n)
+	c. Pick options that you want (labels, noobs, double, n, obs)
 
 3. Add titles and a footnote so that they appear with your proc print
 

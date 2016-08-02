@@ -1,49 +1,78 @@
-libname duck "E:/SAS"; 
+libnameduck"E:\GitHub\IntroSAS\datasets";
 run;
 
-data newdata; 
-set duck.classds; 
-length genderword $6; 
-if gender =1 then genderword = 'male'; 
-else if gender = 2 then genderword = 'female';
-label genderword = 'Gender'; 
-run; 
-
-proc print data = newdata noobs; 
-var genderword; 
+datanewdata;
+setduck.classds;
+lengthgenderword$6;
+ifgender=1thengenderword='male';
+elseifgender=2thengenderword='female';
+labelgenderword='Gender';
 run;
 
-proc print data = newdata noobs label;
-var uniqueid surveydate; 
-label surveydate = 'Date of Survey (char)';
+procprintdata=newdata;
+vargenderword;
 run;
 
-data newdata2 rename=(gender=newgender)); *renaming a variable from another dataset;
-set duck.classds;
+procprintdata=newdatanoobslabel;
+varuniqueidsurveydate;
+labelsurveydate='DateofSurvey(char)';
 run;
 
-proc contents data = newdata2; 
+proccontentsdata=newdata;
 run;
 
-data newdata2; 
-set duck.classds (rename=(gender = oldgender)); *renaming a variable;
+datanewdata2(rename=(gender=newgender));*renamingavariablefromanotherdataset;
+setduck.classds;
 run;
 
-proc print data = newdata2 noobs double label n;
-id uniqueid; 
+proccontentsdata=newdata2;
 run;
 
-*don't forget to put data in your proc statements! ; 
-
-/*make a temporary dataset*/
-
-title1 'Introduction to SAS'; *global statements remain in effect until you change it or close sas;
-title2 'select variables from class data set';
-Footnote1 'Draft not for distribution';
-proc print data = newdata2 noobs label double n;
-	var fakedob oldgender race;
-	id uniqueid;
+datanewdata2;
+setduck.classds(rename=(gender=oldgender));*renamingavariable;
 run;
 
-title1 'New title'; 
+procprintdata=newdata2noobsdoublelabeln;
+iduniqueid;
+run;
 
+*don'tforgettoputdatainyourprocstatements!;
+
+/*makeatemporarydataset*/
+
+title1'IntroductiontoSAS';*globalstatementsremainineffectuntilyouchangeitorclosesas;
+title2'selectvariablesfromclassdataset';
+Footnote1'Draftfordistribution';
+Footnote2'Copyrightnotreserved';
+procprintdata=newdata2(obs=20)labeldoublen;
+	varfakedoboldgenderrace;
+	iduniqueid;
+run;
+
+/*Notethatusingobstogetherwithnoobs*/
+/*optionswillgiveyouanerror*/
+procprintdata=newdata2noobs(obs=20)labeldoublen;
+	varfakedoboldgenderrace;
+	iduniqueid;
+run;
+/*Also,notethatusingnwithobs*/
+/*willlimitntothenumberofobs*/
+
+
+title1'InputStatementinDATAstep';
+title2'Aworkingexample';
+datatotal_sales;
+inputDatemmddyy10.+2Amountcomma5.;
+cards;
+09/05/20001,382
+10/19/20001,235
+11/30/20002,391
+12/19/20113,321
+;
+
+/*Hereweresetthetitle*/
+
+title1;
+proccontentsdata=total_sales;run;
+
+procprintdata=total_sales;run;
