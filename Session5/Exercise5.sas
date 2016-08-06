@@ -2,7 +2,7 @@
 Exercise 5
 Session 5
 
-Create a new, temporary data set from the permanent “classds” that is limited to just females.
+Create a new, temporary data set from the permanent "classds" that is limited to just females.
 
 Use the CATX function to create a new ID variable that consists of variables pob and uniqueid, separated by a period.   Ie:   pob.uniqueid
 
