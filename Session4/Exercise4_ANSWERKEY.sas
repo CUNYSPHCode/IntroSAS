@@ -10,7 +10,7 @@ run;
 proc contents data = males;
 run;
 
-Title1 "Results Table";
+Title1 "Results Table Marcel Ramos";
 
 *create formats for race and borough;
 proc format;
@@ -44,5 +44,9 @@ format race frace. borough fborough.;
 run;
 
 ods html close;
+
+*Reopen SAS ODS; 
+ods HTML; 
+
 ods html;  * reopen the ODS HTML window;
 
