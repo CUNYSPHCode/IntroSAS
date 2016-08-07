@@ -4,12 +4,12 @@ run;
 data females; 
 set duck.classds; 
 where gender = 2; 
-newID = catx ('.', pob, uniqueid);
+newID = catx (' . ', pob, uniqueid);
 newID2 = compress(newID); 
 run; 
 
 proc print data = females (obs = 10); 
-var newID; 
+var newID2; 
 run; 
 
 proc sort data = females; 
