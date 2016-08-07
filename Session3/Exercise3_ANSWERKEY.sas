@@ -5,7 +5,7 @@ data mydata;
 set duck.classds; 
 run; 
 
-title1 "SAS exercise 3 Marcel Ramos";
+title1 "SAS Exercise 3 Marcel Ramos";
 title2 "Introduction to SAS"
 footnote1 "Used with permission"; 
 
@@ -14,7 +14,6 @@ var age fakedob race gender condition;
 id uniqueid; 
 run; 
 
-title1 ; 
+title2 ; 
 footnote1 ;
-title2 ;
- 
+
