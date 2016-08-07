@@ -1,5 +1,7 @@
 *Code for Exercise 4;
 
+libname ref "C:\Users\User\Desktop\SAS\";
+
 *make a new temporary data set that is limited to males;
 data males;
 set ref.classds;
