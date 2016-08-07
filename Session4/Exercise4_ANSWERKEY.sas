@@ -48,5 +48,4 @@ ods html close;
 *Reopen SAS ODS; 
 ods HTML; 
 
-ods html;  * reopen the ODS HTML window;
 
