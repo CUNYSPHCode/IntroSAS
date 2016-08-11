@@ -4,9 +4,9 @@
 /*Call in CHS 2011 data set*/
 /*enter in the pathway where dataset and format programs are stored*/
 /* These can be downloaded from the NYC.GOV website */
-libname ref 'E:\SAS\session 6';  
-filename formatin 'E:\SAS\session 6\formatstatements_chs2011_public.sas';
-%include          'E:\SAS\session 6\formats_chs2011_public.sas';
+libname ref 'E:\SAS\';  
+filename formatin 'E:\IntroSAS\formatstatements_chs2011_public.sas';
+%include          'E:\IntroSAS\formats_chs2011_public.sas';
 
 *Create new temporary data set from permanent data set;
 data chs11;
