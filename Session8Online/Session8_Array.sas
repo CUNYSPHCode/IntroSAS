@@ -4,7 +4,7 @@
 /*Call in CHS 2011 data set*/
 /*enter in the pathway where dataset and format programs are stored*/
 /* These can be downloaded from the NYC.GOV website */
-libname ref 'E:\SAS\';  
+libname ref 'E:\IntroSAS\';
 filename formatin 'E:\IntroSAS\formatstatements_chs2011_public.sas';
 %include          'E:\IntroSAS\formats_chs2011_public.sas';
 
