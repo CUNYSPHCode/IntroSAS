@@ -5,9 +5,9 @@
 
 - Run the libname statement below.
 
-- Write a proc contents for the classone.classds data set.  (See slide 23 for the proc contents template.)
+- Write a proc contents for the classone.classds data set.  (See slide for the proc contents template.)
 
-- 0Use the proc contents output to answer the following questions:
+- Use the proc contents output to answer the following questions:
 
 -	How many observations are in the data set?
 -	How many variables are in the data set?
@@ -15,7 +15,7 @@
 -	Is race a character or numeric variable?
 
 
--Save your program to your jump drive and email a copy of the program to Marcel (marcel.ramos45@myhunter.cuny.edu)
+-Save your program to your jump drive and email a copy of the program to Marcel (marcel.ramos@sph.cuny.edu)
 with the answers to the questions in the text of the email.  
 
 Bring the permanent classds data set with you to the next class.
