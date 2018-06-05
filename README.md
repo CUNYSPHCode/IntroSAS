@@ -16,4 +16,4 @@ Perhaps, this [tutorial](https://try.github.io) will help.
 
 * Special thanks to Brigid Staley for providing material for this course.
 
-https://drive.google.com/drive/folders/15fvWPa3kfVTEcKDcV8YfNb4SnBl9Up9d?usp=sharing
+https://drive.google.com/open?id=15fvWPa3kfVTEcKDcV8YfNb4SnBl9Up9d
