@@ -9,6 +9,6 @@ Create a table from the Community Health Survey 2011 public use data using 'proc
 * Use ODS to get the table into Excel.
 
 
-Send your Excel table(s) to Marcel: marcel.ramos45@myhunter.cuny.edu
+Send your Excel table(s) to Marcel: marcel.ramos@sph.cuny.edu
 
 ; 

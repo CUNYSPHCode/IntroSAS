@@ -14,5 +14,5 @@ Sort the data set you created by condition.
 
 Use PROC MEANS to obtain the following stats on age by condition:  min, max, range, mean, standard deviation.
 
-Email your program to Marcel: marcel.ramos45@myhunter.cuny.edu
+Email your program to Marcel: marcel.ramos45@sph.cuny.edu
 ;

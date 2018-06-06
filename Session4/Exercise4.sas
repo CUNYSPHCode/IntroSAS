@@ -32,6 +32,6 @@ Include a format statement with your new race and borough formats.
 
 Use ODS to create an Excel spreadsheet containing the results of your proc freq.
 
-Email the program to Marcel (marcel.ramos45@myhunter.cuny.edu).
+Email the program to Marcel (marcel.ramos@sph.cuny.edu).
 ;
 

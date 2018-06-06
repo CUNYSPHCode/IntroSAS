@@ -11,6 +11,6 @@ You are going to create 2 new temporary data sets from “classds”.
 * Merge the 2 data sets by uniqueid  (i.e., create a new data set using the merge statement).
 * Run a proc contents on the new merged data set.
 
-Email the program to Marcel: marcel.ramos45@myhunter.cuny.edu
+Email the program to Marcel: marcel.ramos@sph.cuny.edu
 ;
 

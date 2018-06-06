@@ -1,7 +1,7 @@
 
 *Exercise 2, Session 2
 
-- Create a libref to your flash drive (if you don’t have one already)
+- Create a libref to your flash drive (if you don't have one already)
 
 - Create a new, temporary data set called 'males' based on classone.classds
 
@@ -23,7 +23,8 @@ when race is: 		ethnicity is:
 
 - When your code looks good, alter it to make the new data set permanent, and then re-run it
 
-- Save your program to your jump drive and email a copy of the program to Marcel (marcel.ramos45@myhunter.cuny.edu).
+- Save your program to your jump drive and email a copy of the program to Marcel
+(marcel.ramos@sph.cuny.edu)
 
 - Bring both the permanent classds and males data sets with you to future classes.
 

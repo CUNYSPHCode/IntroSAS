@@ -17,7 +17,7 @@ The CHS 2011 Codebook is in the Session8 folder.
 Execute the macro at least three times with a %macro-name. 
 You should produce different results for each %macro-name  (i.e., change the variable(s) each time you execute the macro).
 
-Send your program to Marcel: marcel.ramos45@myhunter.cuny.edu
+Send your program to Marcel: marcel.ramos@sph.cuny.edu
 ;
 
 
