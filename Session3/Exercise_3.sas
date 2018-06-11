@@ -6,11 +6,14 @@
 
 	b. Decide whether you want an ID statement
 
-	c. Pick options that you want (labels, noobs, double, n, obs)
+	c. Print only 20 observations.
 
-3. Add titles and a footnote so that they appear with your proc print
+    d. Pick some additional options (labels, noobs, double, n)
 
-	a.One title or footnote should include your name
+3. Add at least 2 titles and a footnote so that they appear in the proc print
+output
+
+	a. One title or footnote should include your name
 
 	b. Erase all titles and footnotes except title1
 
