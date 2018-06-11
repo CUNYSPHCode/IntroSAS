@@ -2,9 +2,10 @@
 Exercise 4
 Session 4
 
-1.	Create a libref to your flash drive, if you haven’t already
+1.	Create a libref to your flash drive, if you haven't already
 
-2.	Make a new temporary data set named “males” from the classds data set. Limit the new data set to just males (1).
+2.	Make a new temporary data set named 'males' from the classds data set.
+Limit the new data set to just males (1).
 
 3.	Create a title or footnote that includes your name.
 
@@ -27,7 +28,7 @@ Make the values look like the following text:
 5			Staten Island
 99			unknown
 
-Write a proc freq to cross-tab (2 x 2) race by borough in the “males” data set.
+Write a proc freq to cross-tab (2 x 2) race by borough in the 'males' data set.
 Include a format statement with your new race and borough formats.
 
 Use ODS to create an Excel spreadsheet containing the results of your proc freq.
