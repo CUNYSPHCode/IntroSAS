@@ -1,4 +1,4 @@
-libname lion 'E:\GitHub\IntroSAS\datasets'; 
+libname lion 'S:\github\IntroSAS\datasets'; 
 
 proc freq data = lion.classds; 
 table gender; 
@@ -7,14 +7,17 @@ run;
 data mydata; 
 set lion.classds; 
 if gender = 99 then gender = .;
+if race = 99 then race = .; 
+run; 
+
+proc contents data = mydata; run; 
+
+proc freq data = mydata; 
+table race; 
 run; 
 
 proc freq data = mydata; 
-table gender; 
-run; 
-
-proc freq data = mydata; 
-table gender /missing; 
+table gender location /missing; 
 run; 
 
 proc contents data = mydata; run; 
@@ -27,10 +30,14 @@ proc freq data = mydata;
 table gender*race /missing; 
 run; 
 
+
 proc freq data = mydata; 
 table gender*race /missing list; 
 run; 
 
+proc freq data = mydata; 
+table gender*race /missing nopercent nocol; 
+run; 
 
 proc freq data = mydata; 
 table borough*gender*race /missing; 
@@ -41,7 +48,48 @@ table gender*age /missing;
 run; 
 
 proc freq data = mydata; 
+tables borough*gender*location /missing; 
+run; 
+
+proc freq data = mydata; 
+tables gender*location /missing; 
+where borough = 1; 
+run; 
+
+proc freq data = mydata; 
+tables gender*(location borough) /missing; 
+run; 
+
+proc freq data = mydata; 
 table age; run; 
+
+proc format; 
+value $borofmt
+ '1' = 'Bronx'
+ '2' = 'Brooklyn'
+ '3' = 'Manhattan'
+ '4' = 'Queens'
+ '5' = 'Staten Island'
+;
+value boroughf
+ 1 = "Bronx"
+ 2 = "Brooklyn"
+ 3 = "Manhattan"
+ 4 = "Queens"
+ 5 = "Staten Island"
+ ; 
+run;
+
+proc freq data = mydata; 
+  table boro_char; 
+run; 
+
+proc freq data = mydata; 
+  table boro_char; 
+  format boro_char $borofmt.; 
+run; 
+
+
 
 proc format ;
 value fgender
@@ -65,12 +113,12 @@ format  gender formatgender. age fage.;
 
 run;
 
-data lion.mydata2; 
+data work.mydata2; 
 set mydata; 
 format gender fgender.; 
 run; 
 
-proc contents data = lion.mydata2; run; 
+proc contents data = mydata2; run; 
 
 proc freq data = lion.mydata2;
 table gender; run; 
@@ -95,15 +143,22 @@ run;
 
 options fmtsearch = (lion.classformats work); 
 
-
+proc contents data = mydata2; run; 
 
 /*ods html path = "E:\GitHub\IntroSAS\datasets\";*/
-ODS HTML FILE='C:\Users\AV\Downloads\test.xls';
+ODS HTML FILE='C:\Users\mramos\Downloads\test.xls';
 
-proc freq data = lion.classds; 
+proc freq data = mydata2; 
 table gender*race /missing; 
 run; 
 
 ods html close; 
 
+/*Note: This will not be output*/
+proc print data = mydata (obs = 20); 
+run; 
+
+/*Re-enable the ODS*/
 ods html;
+proc print data = mydata (obs = 20); 
+run; 
