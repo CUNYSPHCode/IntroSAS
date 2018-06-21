@@ -1,4 +1,4 @@
-libname lion 'E:\GitHub\IntroSAS\datasets'; 
+libname lion 'S:\github\IntroSAS\datasets'; 
 
 proc sort data = lion.classds; 
 by fakedob; run; 
