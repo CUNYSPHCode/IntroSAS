@@ -86,3 +86,34 @@ run;
 proc print data=fishlength noobs;
    title 'Fish Length Data for Each Location and Date';
 run;
+
+
+data zip;
+input State $ City $ ZipCode Street $20-29;
+datalines;
+FL Miami     33133 Rice St	
+FL Miami     33133 Thomas Ave
+FL Miami     33133 Surrey Dr
+FL Miami     33133 Trade Ave
+FL Miami     33146 Nervia St
+FL Miami     33146 Corsica St
+FL Lakeland  33801 French Ave
+FL Lakeland  33809 Egret Dr
+AZ Tucson    85730 Domenic Ln
+AZ Tucson    85730 Gleeson Pl
+;
+
+proc sort data=zip;
+by State City ZipCode;
+run;
+
+
+data zip2;
+   set zip;
+   by State City ZipCode;
+   put _n_= City State ZipCode 
+   first.city= last.city= 
+   first.state= last.state= 
+   first.ZipCode= last.ZipCode= ;
+run; 
+
