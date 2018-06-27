@@ -2,15 +2,15 @@
 Session 7
 Exercise
 
-You are going to create 2 new temporary data sets from “classds”.  
+You are going to create 2 new temporary data sets from 'classds'.  
 
-* 1st data set:  Call it “new1”. Keep variables : uniqueid age borough location
+* 1st data set:  Call it 'new1'. Keep variables : uniqueid age borough location
     pob uhf zip boro_char
 
-* 2nd data set:  Call it “new2”. Keep variables: uniqueid condition dob_char
+* 2nd data set:  Call it 'new2'. Keep variables: uniqueid condition dob_char
     fakedob gender race surveydate
 
-* Sort both data sets by unique id, and use the “nodups” option to eliminate
+* Sort both data sets by unique id, and use the 'nodups' option to eliminate
    any duplicates.
        You should check your log window after you run your code to see how many
        duplicates were eliminated.
