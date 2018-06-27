@@ -4,9 +4,10 @@
 /*Call in CHS 2011 data set*/
 /*enter in the pathway where dataset and format programs are stored*/
 /* These can be downloaded from the NYC.GOV website */
+
 libname ref 'E:\Windows\Documents\GitHub\IntroSAS\datasets';
 filename formatin 'E:\Windows\Documents\GitHub\IntroSAS\datasets\formatstatements_chs2011_public.sas';
-%include          'E:\Windows\Documents\GitHub\IntroSAS\datasets\formats_chs2011_public.sas';
+%include 'E:\Windows\Documents\GitHub\IntroSAS\datasets\formats_chs2011_public.sas';
 
 *Create new temporary data set from permanent data set;
 data chs11;
@@ -65,3 +66,4 @@ tables newmood27 newmood28 newmood29 newmood30 newmood31 newmood32;
 run;
 
 /*Success!  Saved us time and lots of lines of code.*/
+
