@@ -1,7 +1,7 @@
+** Introduction to SAS **;
+* Session 2 Exercise
 
-*Exercise 2, Session 2
-
-- Create a libref to your flash drive (if you don't have one already)
+- Create a libref to your flash drive or network drive (LIBNAME statement)
 
 - Create a new, temporary data set called 'males' based on classone.classds
 
@@ -18,16 +18,16 @@ when race is: 		ethnicity is:
 5					other
 99					unknown
 
+- The data set you create (called males) should have 1350 observations and 5
+variables
 
-- The data set you create (called males) should have 1350 observations and 5 variables
+- When your code looks good, alter it to make the new data set permanent, and
+then re-run it
 
-- When your code looks good, alter it to make the new data set permanent, and then re-run it
+- Have both the permanent classds and males data sets with you to future
+classes.
 
-- Save your program to your jump drive and email a copy of the program to Marcel
-(marcel.ramos@sph.cuny.edu)
-
-- Bring both the permanent classds and males data sets with you to future classes.
-
+Submit the assignment code as a WORD document on BlackBoard
 
 ;
 
