@@ -151,3 +151,67 @@ proc contents data=total_sales; run;
 
 proc print data=total_sales; run;
 
+Title1 "Example data air";
+proc print data = sashelp.air (obs = 10); run;
+
+Title1; 
+proc print data = sashelp.baseball (obs= 10); run;
+
+Title1 "Jane's great output";
+Title2 'Proc Print'; 
+Title3 'Run';
+proc print data = sashelp.baseball (obs= 10); run;
+
+
+Title1 "Jane's great output";
+Title2; 
+/*Title2 'Proc Print'; */
+/*Title3 'Run';*/
+proc print data = sashelp.baseball (obs= 10); run;
+
+LIBNAME lion "S:\github\IntroSAS\datasets"; 
+
+/*Creating an empty dataset (use set statement)*/
+data work.mytemp; 
+run;
+
+data work.mytemp; 
+	set lion.classds;
+run; 
+
+/*Run data steps keeping intermediate datasets*/
+data work.males; 
+	set lion.classds;
+	where gender = 1; 
+run;
+
+data work.males1 (rename= (gender = sex));
+	set work.males; 
+run; 
+
+data males2;
+set males1; 
+run;
+
+/*alternatively combine steps into one data step*/
+data work.males (rename = (gender = sex)); 
+	set lion.classds;
+	where gender = 1; 
+run;
+
+/*ERROR below*/
+data work.males ; 
+/*	rename occurs before processing*/
+	set lion.classds (rename = (gender = sex));
+	where gender = 1; 
+/*	ERROR: Variable gender is not on file LION.CLASSDS.*/
+run;
+
+/*	rename occurs after processing*/
+data work.males (rename = (gender = sex)); 
+	set lion.classds ;
+	where gender = 1; 
+run;
+
+proc contents data = males; run;
+
