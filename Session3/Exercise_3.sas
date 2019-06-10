@@ -17,7 +17,5 @@ output
 
 	b. Erase all titles and footnotes except title1
 
-Save your program to your jump drive and email a copy of the program to
-Marcel (Marcel.Ramos@sph.cuny.edu)
 ;
 
