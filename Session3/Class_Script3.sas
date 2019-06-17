@@ -1,5 +1,5 @@
-libname duck "S:\github\IntroSAS\datasets";
-run;
+/* libname duck "S:\github\IntroSAS\datasets"; */
+libname duck "/folders/myshortcuts/SASUniversityEdition/IntroSAS/datasets";
 
 data newdata;
 set duck.classds;
@@ -9,7 +9,7 @@ else if gender=2 then sexchar='female';
 label sexchar='Sex';
 run;
 
-proc print data = newdata; run; 
+proc print data = newdata (obs = 10); run; 
 
 /*Add arbitrary dataset using datalines*/
 data person;
@@ -19,7 +19,8 @@ John Sales
 Mary Acctng
 Jane Sales
 ;
-
+proc contents data = person; run;
+ 
 /*Add example mice dataset*/
 data mice; 
   input bwt gestation parity;
@@ -29,6 +30,7 @@ data mice;
 113 282 0.43
 128 279 0.44
 ;
+proc contents data=mice; run;
 
 /*Set a label for the bwt variable*/
 data mice; 
@@ -80,7 +82,7 @@ attrib parity label = "n mice"
 bodyweight label = "mice bodyweight in grams";
 run; 
 
-proc print data = mice; run; 
+proc print data = mice label; run; 
 
 title1; 
 proc print data = mice noobs double; run; 
@@ -113,10 +115,10 @@ run;
 
 /*make a temporary dataset*/
 
-title1 'IntroductiontoSAS';*globalstatementsremainineffectuntilyouchangeitorclosesas;
-title2 'selectvariablesfromclassdataset';
-Footnote1 'Draftfordistribution';
-Footnote2 'Copyrightnotreserved';
+title1 'Introduction to SAS';*globalstatementsremainineffectuntilyouchangeitorclosesas;
+title2 'select variables from class dataset';
+Footnote1 'Draft for distribution';
+Footnote2 'Copyright not reserved';
 proc print data=newdata2 (obs=20) label double n;
 	var fakedob oldgender race;
 	id uniqueid;
@@ -132,8 +134,8 @@ run;
 /*will limit n to the number of obs*/
 
 
-title1 'InputStatementinDATAstep';
-title2 'Aworkingexample';
+title1 'Input Statement in DATA step';
+title2 'A working example';
 data total_sales;
 input Date mmddyy10.+2 Amount comma5.;
 cards;

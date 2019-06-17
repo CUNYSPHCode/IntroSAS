@@ -1,7 +1,7 @@
 libname lion 'S:\github\IntroSAS\datasets'; 
 
 proc freq data = lion.classds; 
-table gender; 
+table gender race; 
 run; 
 
 data mydata; 
@@ -13,11 +13,11 @@ run;
 proc contents data = mydata; run; 
 
 proc freq data = mydata; 
-table race; 
+table gender race; 
 run; 
 
 proc freq data = mydata; 
-table gender location /missing; 
+table gender location / missing; 
 run; 
 
 proc contents data = mydata; run; 
@@ -30,13 +30,13 @@ proc freq data = mydata;
 table gender*race /missing; 
 run; 
 
+proc freq data = mydata; 
+table gender*race /missing nopct nocol norow; 
+run; 
+
 
 proc freq data = mydata; 
 table gender*race /missing list; 
-run; 
-
-proc freq data = mydata; 
-table gender*race /missing nopercent nocol; 
 run; 
 
 proc freq data = mydata; 
@@ -61,7 +61,17 @@ tables gender*(location borough) /missing;
 run; 
 
 proc freq data = mydata; 
+tables (location borough)*gender /missing; 
+run; 
+
+
+proc freq data = mydata; 
 table age; run; 
+
+proc means data = mydata; 
+var age; 
+run;
+
 
 proc format; 
 value $borofmt
@@ -84,6 +94,9 @@ proc freq data = mydata;
   table boro_char; 
 run; 
 
+proc contents data = mydata; 
+run;
+
 proc freq data = mydata; 
   table boro_char; 
   format boro_char $borofmt.; 
@@ -93,9 +106,9 @@ run;
 
 proc format ;
 value fgender
-1= '1 = male'
-2 = '2 = female'
-99 = '99 = missing';
+1= '1 - male'
+2 = '2 - female'
+99 = '99 - missing';
 
 value formatgender
 low - 1 = "male"
@@ -110,7 +123,6 @@ run;
 PROC FREQ data = mydata;
 tables gender*age; 
 format  gender formatgender. age fage.;
-
 run;
 
 data work.mydata2; 
@@ -120,9 +132,11 @@ run;
 
 proc contents data = mydata2; run; 
 
-proc freq data = lion.mydata2;
-table gender; run; 
+proc freq data = work.mydata2;
+table gender;
+run; 
 
+/*force load the data by stripping the formats*/
 option nofmterr; 
 
 proc format library = lion.classformats;
@@ -143,16 +157,36 @@ run;
 
 options fmtsearch = (lion.classformats work); 
 
+%include "C:\Users\mramos\Downloads\Final_Formats_NYCHANES-2013-14_AnalyticDB_042618.sas";
+
 proc contents data = mydata2; run; 
 
 /*ods html path = "E:\GitHub\IntroSAS\datasets\";*/
-ODS HTML FILE='C:\Users\mramos\Downloads\test.xls';
+ODS HTML PATH='C:\Users\mramos\Downloads\'
+	FILE = 'test.xls';
 
 proc freq data = mydata2; 
 table gender*race /missing; 
 run; 
 
 ods html close; 
+
+/*save directly to an excel file*/
+ODS HTML FILE='C:\Users\mramos\Downloads\test1.xls';
+
+proc freq data = mydata2; 
+table gender*race / list; 
+run; 
+
+ODS HTML close; 
+
+/*Save file to rich text format*/
+ODS RTF FILE = 'C:\Users\mramos\Downloads\myFile.rtf';
+
+proc contents data = mydata2; 
+run;
+
+ODS RTF close; 
 
 /*Note: This will not be output*/
 proc print data = mydata (obs = 20); 
