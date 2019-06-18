@@ -42,6 +42,7 @@ by gender; run ;
 data newdata; 
 set tempdata; 
 avg_age = mean(age); 
+day_var = day(fakedob); 
 run; 
 
 proc print data = newdata (obs = 20); run;
@@ -69,10 +70,14 @@ run ;
 Data newdata;
 set tempdata;
 age_calc = int(intck('month', fakedob, '06aug13'd)/12); 
+age_year = intck("year", fakedob, '06Aug19'd); 
+age_today = intck("year", fakedob, today());
 run;
 
-proc print data = newdata (obs = 20); 
-var age_calc; run; 
+proc print data = newdata (obs = 10);
+  var age_calc age_year age_today fakedob; 
+run; 
+
 
 data practice;
 A = 'goldfish';
@@ -84,3 +89,31 @@ run;
 
 proc print data = practice; 
 var A B pets pets2 pets3; run; 
+
+
+/*Example dataset using generated data*/
+
+data names;
+infile datalines; 
+input first $ last $20.; 
+datalines; 
+Alex Guarnaschelli
+Marcus Samuelsson
+Eric Ripert
+Giada De Laurentis
+;
+
+proc contents data = names; run; 
+
+proc print data = names; run;
+
+/*combine names into a particular layout (last, first)*/
+data names; 
+set names; 
+lastfirst = catx(", ", last, first); 
+complastfirst = compress(lastfirst, ", ");
+RUN; 
+
+proc print data = names; 
+run; 
+
