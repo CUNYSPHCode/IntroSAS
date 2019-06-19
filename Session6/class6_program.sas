@@ -40,7 +40,7 @@ diet2 = lowcase(diet);
 run; 
 
 proc freq data = exampleData; 
-table diet2; run; 
+table diet diet2; run; 
 
 
 proc contents data = exampledata; run; 
@@ -71,13 +71,17 @@ DBMS = xlsx replace;
 sheet = "Partners"; run; 
 
 proc import datafile = "S:\github\IntroSAS\datasets\SampleData.xlsx"
-out = work.sampledata
+out = work.sales
 DBMS = xlsx replace; 
 Range = "SalesOrders$A1:F15"; run; 
 
 proc contents data = sampledata; run; 
+proc contents data = sales; run; 
 
 proc print data = sampledata; run; 
+proc print data = sales;
+format OrderDate date7.; 
+run; 
 
 PROC CONTENTS data = sashelp.class; run; 
 
@@ -113,10 +117,11 @@ datalines;
 Proc Copy / Proc Copy;
 ***********************************************************************************************/
 * create a XPORT file from a SAS dataset using Proc Copy;
+
 libname sasfile "c:\Users\mramos\Downloads";  *this is where the SAS data set reside;
 libname xptfile xport "c:\Users\mramos\Downloads\test.xpt";  *this is where the XPORT file will be created;
 proc copy in=sasfile out=xptfile memtype=data;
-select test;
+	select test;
 run;
 
 *convert the XPORT file back to a SAS dataset using proc step;
