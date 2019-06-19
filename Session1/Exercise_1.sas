@@ -15,9 +15,6 @@
 -	Is race a character or numeric variable?
 
 
--Save your program to your jump drive and email a copy of the program to Marcel (marcel.ramos@sph.cuny.edu)
-with the answers to the questions in the text of the email.  
-
 Bring the permanent classds data set with you to the next class.
 
 ;
