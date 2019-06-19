@@ -13,7 +13,5 @@ and dimensions that you want.
 
 * Use ODS to get the table into Excel.
 
-** Submit your assignment via BlackBoard as either a Word Document or
-inline text
-
+** Submit your assignment via BlackBoard as either a Word Document
 ; 

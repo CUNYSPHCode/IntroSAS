@@ -89,6 +89,51 @@ proc export data = sashelp.class (where = (sex = "F"))
   DBMS = csv REPLACE; 
 run; 
 
+/* From https://www.popcenter.umd.edu/resources/research-tools/stats-support/sas-frequently-used-code-revised/to-convert-sas-xport-file-to-sas-data-file */
+/********************************************************************
+* to convert SAS XPORT file to SAS data file.sas
+********************************************************************/
+
+*Proc copy only can read a SAS XPORT file that made with Proc copy and can't read files that made with Proc cport;
+*Proc cimport only can read a SAS XPORT file that made with Proc cport and can't read files that made with Proc copy;
+
+* create sample data;
+libname sasfile "c:\Users\mramos\Downloads";
+data sasfile.test;
+input a b c;
+datalines;
+1 26 31
+1 28 28
+1 30 31
+2 32 31
+2 34 29
+;
+
+/***********************************************************************************************
+Proc Copy / Proc Copy;
+***********************************************************************************************/
+* create a XPORT file from a SAS dataset using Proc Copy;
+libname sasfile "c:\Users\mramos\Downloads";  *this is where the SAS data set reside;
+libname xptfile xport "c:\Users\mramos\Downloads\test.xpt";  *this is where the XPORT file will be created;
+proc copy in=sasfile out=xptfile memtype=data;
+select test;
+run;
+
+*convert the XPORT file back to a SAS dataset using proc step;
+libname xptfile xport "c:\Users\mramos\Downloads\test.xpt";
+libname sasfile2 "c:\Users\mramos\Downloads\";
+proc copy in=xptfile out=sasfile2 memtype=data;
+run;
+
+*convert the XPORT file back to a sas dataset using data step;
+ libname in xport "c:\Users\mramos\Downloads\test.xpt" /*directory path where file is located/SAS export file nam*/;
+data wave1;
+set in.test;
+run;
+
+/******/
+
+
 /* read data without formats */
 option nofmterr;
 
