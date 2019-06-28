@@ -1,17 +1,17 @@
-
 /*Session 8: ARRAY EXAMPLE*/
 
 /*Call in CHS 2011 data set*/
 /*enter in the pathway where dataset and format programs are stored*/
 /* These can be downloaded from the NYC.GOV website */
 
-libname ref 'E:\Windows\Documents\GitHub\IntroSAS\datasets';
-filename formatin 'E:\Windows\Documents\GitHub\IntroSAS\datasets\formatstatements_chs2011_public.sas';
-%include 'E:\Windows\Documents\GitHub\IntroSAS\datasets\formats_chs2011_public.sas';
+libname ref 'C:\Users\marcel.ramosperez45\DOCUMENTS\IntroSAS\datasets';
+filename formatin 'C:\Users\marcel.ramosperez45\DOCUMENTS\IntroSAS\datasets\formatstatements_chs2011_public.sas';
+%include 'C:\Users\marcel.ramosperez45\DOCUMENTS\IntroSAS\datasets\formats_chs2011_public.sas';
 
 *Create new temporary data set from permanent data set;
 data chs11;
 set ref.chs2011_public;
+%include formatin;
 run;
 
 /*Check variables mood27, mood28, mood29, mood30, mood31, and mood32*/
