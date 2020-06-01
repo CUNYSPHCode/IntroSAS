@@ -14,9 +14,6 @@
 -	On what date was the data set created?
 -	Is race a character or numeric variable?
 
-
-Bring the permanent classds data set with you to the next class.
-
 ;
 
 libname classone 'C:\Users\User\Documents\'; * modify to your file path;
