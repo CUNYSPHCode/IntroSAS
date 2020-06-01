@@ -14,6 +14,6 @@ If you would like to use `git` and `github` on Windows, download and install
 [git](https://git-scm.com/download/win).
 Perhaps, this [tutorial](https://try.github.io) will help.
 
-* Special thanks to Brigid Staley for providing material for this course.
+* Special thanks to Brigid Staley and Jesica S. Rodriguez-Lopez for providing
+  material for this course.
 
-https://drive.google.com/open?id=15fvWPa3kfVTEcKDcV8YfNb4SnBl9Up9d
