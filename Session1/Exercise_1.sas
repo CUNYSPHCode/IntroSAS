@@ -1,13 +1,13 @@
 
 *Exercise 1, Session 1
 
-- Download the "classds" data set from Blackboard and save it to your jump drive.
+- Download the "classds" data set from Blackboard and save it to your computer.
 
-- Run the libname statement below.
+- Run the LIBNAME statement below.
 
-- Write a proc contents for the classone.classds data set.  (See slide for the proc contents template.)
+- Write a PROC CONTENTS for the classone.classds data set.  (See slide for the PROC CONTENTS template.)
 
-- Use the proc contents output to answer the following questions:
+- Use the PROC CONTENTS output to answer the following questions:
 
 -	How many observations are in the data set?
 -	How many variables are in the data set?
@@ -16,5 +16,5 @@
 
 ;
 
-libname classone 'C:\Users\User\Documents\'; * modify to your file path;
-
+* modify to your file path;
+LIBNAME classone 'C:\Users\User\Documents\';
