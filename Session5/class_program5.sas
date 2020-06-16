@@ -54,10 +54,19 @@ data todaydata;
 today = today(); 
 yesterday = today() - 1; run; 
 
+PROC PRINT data = todaydata;
+RUN;
+
 proc print data = todaydata; 
 var today yesterday; 
 format today yesterday date10.; 
 run; 
+
+PROC PRINT DATA = todaydata; 
+var today yesterday; 
+format today yesterday DDMMYY.; 
+RUN;
+
 
 data intck_practice;
 days_since = intck('days', '01jan07'd, '31jan07'd);
@@ -79,21 +88,21 @@ proc print data = newdata (obs = 10);
 run; 
 
 
-data practice;
+DATA WORK.practice;
 A = 'goldfish';
 B = 'iguana';
 pets= CAT(A, B);
-pets2 = CATX(' ', A, B);
+pets2 = CATX(" & ", A, B);
 pets3 = compress(pets2);  
 run;
 
-proc print data = practice; 
-var A B pets pets2 pets3; run; 
+PROC PRINT data = practice; 
+RUN; 
 
 
 /*Example dataset using generated data*/
 
-data names;
+data chefnames;
 infile datalines; 
 input first $ last $20.; 
 datalines; 
@@ -103,17 +112,41 @@ Eric Ripert
 Giada De Laurentis
 ;
 
-proc contents data = names; run; 
+proc contents data = chefnames; run; 
 
-proc print data = names; run;
+proc print data = chefnames; run;
 
 /*combine names into a particular layout (last, first)*/
-data names; 
-set names; 
+data chefnames; 
+set chefnames; 
 lastfirst = catx(", ", last, first); 
 complastfirst = compress(lastfirst, ", ");
 RUN; 
 
-proc print data = names; 
+proc print data = chefnames; 
 run; 
+
+/* converting type */
+DATA classtemp; 
+SET lion.CLASSDS;
+newboro = INPUT(boro_char, 5.);
+zip_char = PUT(zip, 8.);
+RUN; 
+
+PROC CONTENTS data = classtemp; 
+RUN; 
+
+PROC PRINT DATA = classtemp (obs = 10); 
+VAR boro_char newboro; 
+RUN;
+
+PROC PRINT DATA = classtemp (obs = 10); 
+VAR zip zip_char; 
+RUN;
+
+
+
+
+
+
 
