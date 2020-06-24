@@ -4,20 +4,20 @@
 /*enter in the pathway where dataset and format programs are stored*/
 /* These can be downloaded from the NYC.GOV website */
 
-libname ref 'C:\Users\marcel.ramosperez45\DOCUMENTS\IntroSAS\datasets';
-filename formatin 'C:\Users\marcel.ramosperez45\DOCUMENTS\IntroSAS\datasets\formatstatements_chs2011_public.sas';
-%include 'C:\Users\marcel.ramosperez45\DOCUMENTS\IntroSAS\datasets\formats_chs2011_public.sas';
+libname ref 'C:\DOCUMENTS\IntroSAS\datasets';
+filename formatin 'C:\DOCUMENTS\IntroSAS\datasets\formatstatements_chs2011_public.sas';
+%include 'C:\DOCUMENTS\IntroSAS\datasets\formats_chs2011_public.sas';
 
 *Create new temporary data set from permanent data set;
-data chs11;
-set ref.chs2011_public;
+DATA chs11;
+SET ref.chs2011_public;
 %include formatin;
-run;
+RUN;
 
 /*Check variables mood27, mood28, mood29, mood30, mood31, and mood32*/
-proc freq data = chs11;
+PROC FREQ DATA = chs11;
 tables mood27 mood28 mood29 mood30 mood31 mood32;
-run;
+RUN;
 
 /*Say we want to re-code variables mood27, mood28, mood29, mood30, mood31, and mood32 to be:*/
 /*1 = Most or all of the time*/
@@ -26,8 +26,8 @@ run;
 /**/
 /*Option 1: Re-code each variable separately*/
 
-data new;
-set chs11;
+DATA new;
+SET chs11;
 
 if mood27 in (1,2) then newmood27 = 1;
 if mood27 in (3,4) then newmood27 =2;
@@ -39,31 +39,30 @@ if mood28 in (3,4) then newmood28 =2;
 if mood28 =5 then newmood28 =3;
 if missing (mood28) then newmood28 =.;
 /*ETC.*/
-
+RUN;
 
 /*Option 2: Use arrays to re-code variables:*/
-
-data new;
-set chs11;
+DATA new;
+SET chs11;
 
 array moods (6) mood27 mood28 mood29 mood30 mood31 mood32;  *array of variables from our dataset to be re-coded;
 array newmoods (6) newmood27 newmood28 newmood29 newmood30 newmood31 newmood32;  *array with names for new re-coded variables;
 
 do i = 1 to 6;
-	if moods(i) in (1,2) then newmoods(i) =1;
-	if moods(i) in (3,4) then newmoods(i) =2;
-	if moods(i) =5 then newmoods(i) =3;
-	if moods(i) =. then newmoods(i) =.;
-	end;
+  if moods(i) in (1,2) then newmoods(i) =1;
+  if moods(i) in (3,4) then newmoods(i) =2;
+  if moods(i) =5 then newmoods(i) =3;
+  if moods(i) =. then newmoods(i) =.;
+end;
 * format newmood27 newmood28 newmood29 newmood30 newmood31 newmood32 moodsf.; 
-run;
+RUN;
 /*The "do loop" (do i = ) allows us to tell SAS what to do to the arrayed variables.*/
 
 
 *check new re-coded variables;
-proc freq data =new;
+PROC FREQ data =new;
 tables newmood27 newmood28 newmood29 newmood30 newmood31 newmood32;
-run;
+RUN;
 
 /*Success!  Saved us time and lots of lines of code.*/
 
