@@ -1,8 +1,16 @@
 /* libname duck "S:\github\IntroSAS\datasets"; */
 libname duck "/folders/myshortcuts/SASUniversityEdition/IntroSAS/datasets";
 
-DATA newdata
+DATA work.newdata;
   SET duck.classds;
+RUN;
+
+/* writing a permanent dataset */
+/* Your WANT will change to a permanent location */
+
+DATA duck.newMales;
+  SET work.newdata;
+  WHERE males = 1; 
 RUN;
 
 PROC PRINT data = newdata (obs = 10);
