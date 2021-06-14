@@ -1,198 +1,200 @@
-libname lion 'S:\github\IntroSAS\datasets'; 
+LIBNAME lion 'S:\github\IntroSAS\datasets'; 
 
-proc freq data = lion.classds; 
-table gender race; 
-run; 
+PROC FREQ DATA = lion.classds; 
+TABLE gender race; 
+RUN; 
 
-data mydata; 
-set lion.classds; 
-if gender = 99 then gender = .;
-if race = 99 then race = .; 
-run; 
+DATA mydata; 
+SET lion.classds; 
+IF gender = 99 THEN gender = .;
+IF race = 99 THEN race = .; 
+RUN; 
 
-proc contents data = mydata; run; 
+PROC CONTENTS DATA = mydata; RUN; 
 
-proc freq data = mydata; 
-table gender race; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLE gender race; 
+RUN; 
 
-proc freq data = mydata; 
-table gender location / missing; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLE gender location / missing; 
+RUN; 
 
-proc contents data = mydata; run; 
+PROC CONTENTS DATA = mydata; RUN; 
 
-proc freq data = mydata; 
-table gender*race; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLE gender*race; 
+RUN; 
 
-proc freq data = mydata; 
-table gender*race /missing; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLE gender*race /missing; 
+RUN; 
 
-proc freq data = mydata; 
-table gender*race /missing nopct nocol norow; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLE gender*race /missing nopct nocol norow; 
+RUN; 
 
 
-proc freq data = mydata; 
-table gender*race /missing list; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLE gender*race /missing list; 
+RUN; 
 
-proc freq data = mydata; 
-table borough*gender*race /missing; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLE borough*gender*race /missing; 
+RUN; 
 
-proc freq data = mydata; 
-table gender*age /missing; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLE gender*age /missing; 
+RUN; 
 
-proc freq data = mydata; 
-tables borough*gender*location /missing; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLES borough*gender*location /missing; 
+RUN; 
 
-proc freq data = mydata; 
-tables gender*location /missing; 
+PROC FREQ DATA = mydata; 
+TABLES gender*location /missing; 
 where borough = 1; 
-run; 
+RUN; 
 
-proc freq data = mydata; 
-tables gender*(location borough) /missing; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLES gender*(location borough) /missing; 
+RUN; 
 
-proc freq data = mydata; 
-tables (location borough)*gender /missing; 
-run; 
+PROC FREQ DATA = mydata; 
+TABLES (location borough)*gender /missing; 
+RUN; 
 
 
-proc freq data = mydata; 
-table age; run; 
+PROC FREQ DATA = mydata; 
+TABLE age; RUN; 
 
-proc means data = mydata; 
+PROC means DATA = mydata; 
 var age; 
-run;
+RUN;
 
 
-proc format; 
-value $borofmt
+PROC FORMAT; 
+* bad practice; 
+VALUE $borofmt
  '1' = 'Bronx'
  '2' = 'Brooklyn'
  '3' = 'Manhattan'
  '4' = 'Queens'
  '5' = 'Staten Island'
 ;
-value boroughf
+* good practice; 
+VALUE boroughf
  1 = "Bronx"
  2 = "Brooklyn"
  3 = "Manhattan"
  4 = "Queens"
  5 = "Staten Island"
  ; 
-run;
+RUN;
 
-proc freq data = mydata; 
-  table boro_char; 
-run; 
+PROC FREQ DATA = mydata; 
+  TABLE boro_char; 
+RUN; 
 
-proc contents data = mydata; 
-run;
+PROC CONTENTS DATA = mydata; 
+RUN;
 
-proc freq data = mydata; 
-  table boro_char; 
-  format boro_char $borofmt.; 
-run; 
+PROC FREQ DATA = mydata; 
+  TABLE boro_char; 
+  FORMAT boro_char $borofmt.; 
+RUN; 
 
 
 
-proc format ;
-value fgender
+PROC FORMAT ;
+VALUE fgender
 1= '1 - male'
 2 = '2 - female'
 99 = '99 - missing';
 
-value formatgender
+VALUE formatgender
 low - 1 = "male"
 2 = "female";
 
-value fage
+VALUE fage
 low - 25 = '0-25'
 26 - high = '26 +';
 
-run;
+RUN;
 
-PROC FREQ data = mydata;
-tables gender*age; 
-format  gender formatgender. age fage.;
-run;
+PROC FREQ DATA = mydata;
+TABLES gender*age; 
+FORMAT  gender formatgender. age fage.;
+RUN;
 
-data work.mydata2; 
-set mydata; 
-format gender fgender.; 
-run; 
+DATA work.mydata2; 
+SET mydata; 
+FORMAT gender fgender.; 
+RUN; 
 
-proc contents data = mydata2; run; 
+PROC CONTENTS DATA = mydata2; RUN; 
 
-proc freq data = work.mydata2;
-table gender;
-run; 
+PROC FREQ DATA = work.mydata2;
+TABLE gender;
+RUN; 
 
 /*force load the data by stripping the formats*/
-option nofmterr; 
+OPTION nofmterr; 
 
-proc format library = lion.classformats;
-value fgender
+PROC FORMAT library = lion.classformats;
+VALUE fgender
 1= '1 = male'
 2 = '2 = female'
 99 = '99 = missing';
 
-value formatgender
+VALUE formatgender
 low - 1 = "male"
 2 = "female";
 
-value fage
+VALUE fage
 low - 25 = '0-25'
 26 - high = '26 +';
 
-run;
+RUN;
 
-options fmtsearch = (lion.classformats work); 
+OPTIONS fmtsearch = (lion.classformats work); 
 
 %include "C:\Users\mramos\Downloads\Final_Formats_NYCHANES-2013-14_AnalyticDB_042618.sas";
 
-proc contents data = mydata2; run; 
+PROC CONTENTS DATA = mydata2; RUN; 
 
 /*ods html path = "E:\GitHub\IntroSAS\datasets\";*/
 ODS HTML PATH='C:\Users\mramos\Downloads\'
 	FILE = 'test.xls';
 
-proc freq data = mydata2; 
-table gender*race /missing; 
-run; 
+PROC FREQ DATA = mydata2; 
+TABLE gender*race /missing; 
+RUN; 
 
-ods html close; 
+ODS HTML close; 
 
 /*save directly to an excel file*/
 ODS HTML FILE='C:\Users\mramos\Downloads\test1.xls';
 
-proc freq data = mydata2; 
-table gender*race / list; 
-run; 
+PROC FREQ DATA = mydata2; 
+TABLE gender*race / list; 
+RUN; 
 
 ODS HTML close; 
 
 /*Save file to rich text format*/
 ODS RTF FILE = 'C:\Users\mramos\Downloads\myFile.rtf';
 
-proc contents data = mydata2; 
-run;
+PROC CONTENTS DATA = mydata2; 
+RUN;
 
 ODS RTF close; 
 
 /*Note: This will not be output*/
-proc print data = mydata (obs = 20); 
-run; 
+PROC print DATA = mydata (obs = 20); 
+RUN; 
 
 /*Re-enable the ODS*/
-ods html;
-proc print data = mydata (obs = 20); 
-run; 
+ODS HTML;
+PROC print DATA = mydata (obs = 20); 
+RUN; 

@@ -2,11 +2,11 @@
 Exercise 4
 Session 4
 
-1.	Create a libref to your data folder, if you haven't already (use a libname
-statement).
+1.	Create a libref to your data folder, if you haven't already (i.e., use a
+libname statement).
 
 2.	Make a new temporary data set named 'males' from the classds data set.
-Limit the new data set to just males (1).
+Limit the new data set to just males (gender = 1).
 
 3.	Create a title or footnote that includes your name.
 
