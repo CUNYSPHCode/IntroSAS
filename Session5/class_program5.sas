@@ -1,63 +1,63 @@
-libname lion 'S:\github\IntroSAS\datasets'; 
+LIBNAME lion 'S:\github\IntroSAS\datasets'; 
 
-proc sort data = lion.classds; 
+PROC SORT DATA = lion.classds; 
 by fakedob; run; 
 
-proc print data = lion.classds; 
+PROC print DATA= lion.classds; 
 var fakedob; run; 
 
-proc means data = lion.classds; 
+PROC MEANS DATA = lion.classds; 
 var age; run ;
 
-proc means data = lion.classds range N mean max min mode maxdec=3; 
+PROC MEANS DATA = lion.classds range N mean max min mode maxdec=3; 
 var age; run ;
 
-proc freq data = lion.classds; table borough; run; 
+PROC freq DATA = lion.classds; table borough; run; 
 
-data tempdata; 
+DATA tempdata; 
 set lion.classds; 
 if borough = 99 then borough = .;
 if gender = 99 then gender = .; run; 
 
-proc freq data = tempdata; table borough; run; 
+PROC freq DATA = tempdata; table borough; run; 
 
-proc sort data = tempdata; 
+PROC SORT DATA = tempdata; 
 by borough descending gender; run; 
 
-proc means data = tempdata; 
+PROC MEANS DATA = tempdata; 
 var age; 
 by borough; run; 
 
-proc contents data = tempdata; run; 
+PROC contents DATA = tempdata; run; 
 
-proc freq data = tempdata; table gender; run ;
+PROC freq DATA = tempdata; table gender; run ;
 
-proc sort data = tempdata; 
+PROC SORT DATA = tempdata; 
 by gender; run; 
 
-proc means data = tempdata; 
+PROC MEANS DATA = tempdata; 
 var age; 
 by gender; run ;
 
-data newdata; 
+DATA newdata; 
 set tempdata; 
 avg_age = mean(age); 
 day_var = day(fakedob); 
 run; 
 
-proc print data = newdata (obs = 20); run;
+PROC print DATA = newdata (obs = 20); run;
 
-proc print data = newdata (obs = 20);
+PROC print DATA = newdata (obs = 20);
 var age avg_age; run;  
 
-data todaydata; 
+DATA todaydata; 
 today = today(); 
 yesterday = today() - 1; run; 
 
-PROC PRINT data = todaydata;
+PROC PRINT DATA = todaydata;
 RUN;
 
-proc print data = todaydata; 
+PROC print DATA = todaydata; 
 var today yesterday; 
 format today yesterday date10.; 
 run; 
@@ -68,12 +68,12 @@ format today yesterday DDMMYY.;
 RUN;
 
 
-data intck_practice;
+DATA intck_practice;
 days_since = intck('days', '01jan07'd, '31jan07'd);
 months_since = intck('month', '01jan07'd, '02feb07'd);
 run;
 
-proc print data = intck_practice noobs; 
+PROC print DATA = intck_practice noobs; 
 run ;
 
 Data newdata;
@@ -83,7 +83,7 @@ age_year = intck("year", fakedob, '06Aug19'd);
 age_today = intck("year", fakedob, today());
 run;
 
-proc print data = newdata (obs = 10);
+PROC print DATA = newdata (obs = 10);
   var age_calc age_year age_today fakedob; 
 run; 
 
@@ -96,13 +96,13 @@ pets2 = CATX(" & ", A, B);
 pets3 = compress(pets2);  
 run;
 
-PROC PRINT data = practice; 
+PROC PRINT DATA = practice; 
 RUN; 
 
 
 /*Example dataset using generated data*/
 
-data chefnames;
+DATA chefnames;
 infile datalines; 
 input first $ last $20.; 
 datalines; 
@@ -112,18 +112,18 @@ Eric Ripert
 Giada De Laurentis
 ;
 
-proc contents data = chefnames; run; 
+PROC contents DATA = chefnames; run; 
 
-proc print data = chefnames; run;
+PROC print DATA = chefnames; run;
 
 /*combine names into a particular layout (last, first)*/
-data chefnames; 
+DATA chefnames; 
 set chefnames; 
 lastfirst = catx(", ", last, first); 
 complastfirst = compress(lastfirst, ", ");
 RUN; 
 
-proc print data = chefnames; 
+PROC print DATA = chefnames; 
 run; 
 
 /* converting type */
@@ -133,7 +133,7 @@ newboro = INPUT(boro_char, 5.);
 zip_char = PUT(zip, 8.);
 RUN; 
 
-PROC CONTENTS data = classtemp; 
+PROC CONTENTS DATA = classtemp; 
 RUN; 
 
 PROC PRINT DATA = classtemp (obs = 10); 
