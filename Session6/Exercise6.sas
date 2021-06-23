@@ -11,7 +11,7 @@ mean as your statistic.
 * Use any other variables you want, and add any classification variables
 and dimensions that you want.   
 
-* Use ODS to get the table into RTF format.
+* Use ODS to save the table into RTF format.
 
-** Submit your assignment via BlackBoard as either a Word Document
+** Submit your assignment via BlackBoard as a Word Document
 ; 

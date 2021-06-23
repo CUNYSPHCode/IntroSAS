@@ -6,10 +6,13 @@ libname lion "S:\github\IntroSAS\datasets";
 data chs;
 set lion.chs2011_public; 
 /* apply formats with formatstatements_chs2011_public.sas*/
+%include "S:\github\IntroSAS\datasets\formatstatements_chs2011_public.sas";
 run;
 
 /*use formats catalog with options fmtsearch*/
 options fmtsearch = (work lion.classfmts); 
+
+options fmtsearch = (lion.classfmts work); 
 
 /*Session 7*/
 data dataset1;
