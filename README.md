@@ -1,5 +1,7 @@
 # Introduction to SAS for Data Management and Analysis
 
+[![Join the chat at https://gitter.im/CUNYSPHCode/IntroSAS](https://badges.gitter.im/CUNYSPHCode/IntroSAS.svg)](https://gitter.im/CUNYSPHCode/IntroSAS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Course Source Code and Slides
 
 To download the files in this repository, click the `green` button at the top right and download as a zip file.
