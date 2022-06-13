@@ -13,7 +13,7 @@ DATA duck.newMales;
   WHERE males = 1; 
 RUN;
 
-PROC PRINT data = newdata (obs = 10);
+PROC PRINT DATA = newdata (obs = 10);
 RUN;
 
 /*Add arbitrary dataset using datalines*/
@@ -78,7 +78,7 @@ RUN;
 title1 'Mice dataset SAS example';
 title2 'Summer 2018';
 footnote 'Total N = 3';
-PROC PRINT data = mice noobs n;
+PROC PRINT DATA = mice noobs n;
 RUN;
 
 title2;
@@ -97,7 +97,7 @@ title1;
 PROC PRINT DATA = mice noobs double;
 RUN;
 
-PROC PRINT DATA=newdata noobs label;
+PROC PRINT DATA=newDATA noobs label;
 var uniqueid surveydate;
 label surveydate='DateofSurvey(char)';
 RUN;
@@ -129,10 +129,10 @@ title1 'Introduction to SAS';*globalstatementsremainineffectuntilyouchangeitorcl
 title2 'select variables from class dataset';
 Footnote1 'Draft for distribution';
 Footnote2 'Copyright not reserved';
-proc print data=newdata2 (obs=20) label double n;
+PROC PRINT DATA=newdata2 (obs=20) label double n;
 	var fakedob oldgender race;
 	id uniqueid;
-run;
+RUN;
 
 /*Note that using obs together with noobs*/
 /* options will give you an error*/
@@ -146,7 +146,7 @@ RUN;
 
 title1 'Input Statement in DATA step';
 title2 'A working example';
-data total_sales;
+DATA total_sales;
 input Date mmddyy10.+2 Amount comma5.;
 cards;
 09/05/2000  1,382
@@ -159,71 +159,71 @@ cards;
 
 title1;
 
-proc contents data=total_sales; run;
+PROC CONTENTS data=total_sales; RUN;
 
-proc print data=total_sales; run;
+PROC PRINT DATA=total_sales; RUN;
 
 Title1 "Example data air";
-proc print data = sashelp.air (obs = 10); run;
+PROC PRINT DATA = sashelp.air (obs = 10); RUN;
 
 Title1;
-proc print data = sashelp.baseball (obs= 10); run;
+PROC PRINT DATA = sashelp.baseball (obs= 10); RUN;
 
 Title1 "Jane's great output";
 Title2 'Proc Print';
 Title3 'Run';
-proc print data = sashelp.baseball (obs= 10); run;
+PROC PRINT DATA = sashelp.baseball (obs= 10); RUN;
 
 
 Title1 "Jane's great output";
 Title2;
 /*Title2 'Proc Print'; */
 /*Title3 'Run';*/
-proc print data = sashelp.baseball (obs= 10); run;
+PROC PRINT DATA = sashelp.baseball (obs= 10); RUN;
 
 LIBNAME lion "S:\github\IntroSAS\datasets";
 
 /*Creating an empty dataset (use set statement)*/
-data work.mytemp;
-run;
+DATA work.mytemp;
+RUN;
 
-data work.mytemp;
-	set lion.classds;
-run;
+DATA work.mytemp;
+	SET lion.classds;
+RUN;
 
 /*Run data steps keeping intermediate datasets*/
-data work.males;
-	set lion.classds;
-	where gender = 1;
-run;
+DATA work.males;
+	SET lion.classds;
+	WHERE gender = 1;
+RUN;
 
-data work.males1 (rename= (gender = sex));
-	set work.males;
-run;
+DATA work.males1 (rename= (gender = sex));
+	SET work.males;
+RUN;
 
-data males2;
-set males1;
-run;
+DATA males2;
+SET males1;
+RUN;
 
 /*alternatively combine steps into one data step*/
-data work.males (rename = (gender = sex));
-	set lion.classds;
-	where gender = 1;
-run;
+DATA work.males (rename = (gender = sex));
+	SET lion.classds;
+	WHERE gender = 1;
+RUN;
 
 /*ERROR below*/
-data work.males ;
+DATA work.males ;
 /*	rename occurs before processing*/
-	set lion.classds (rename = (gender = sex));
-	where gender = 1;
+	SET lion.classds (rename = (gender = sex));
+	WHERE gender = 1;
 /*	ERROR: Variable gender is not on file LION.CLASSDS.*/
-run;
+RUN;
 
 /*	rename occurs after processing*/
-data work.males (rename = (gender = sex));
-	set lion.classds ;
-	where gender = 1;
-run;
+DATA work.males (rename = (gender = sex));
+	SET lion.classds ;
+	WHERE gender = 1;
+RUN;
 
-proc contents data = males; run;
+PROC CONTENTS DATA = males; RUN;
 

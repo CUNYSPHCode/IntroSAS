@@ -1,4 +1,4 @@
-LIBNAME lion 'S:\github\IntroSAS\datasets'; 
+ggG:qjjLIBNAME lion 'S:\github\IntroSAS\datasets'; 
 
 PROC FREQ DATA = lion.classds; 
 TABLE gender race; 
