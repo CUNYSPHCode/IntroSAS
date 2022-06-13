@@ -10,13 +10,48 @@ RUN;
 
 DATA duck.newMales;
   SET work.newdata;
-  WHERE males = 1; 
+  WHERE males = 1;
 RUN;
 
-PROC PRINT DATA = newdata (obs = 10);
+/* Distinguish between all the data movements */
+/* work to perm, perm to work, work to work, and  */
+/* perm to perm */
+
+/* create newmales permanent dataset */
+DATA classone.newmales;
+  SET work.males;
 RUN;
 
-/*Add arbitrary dataset using datalines*/
+/* typical import procedure */
+DATA work.classds;
+  SET classone.classds;
+RUN;
+
+/* copy and rename temporary dataset */
+DATA work.newmales;
+  SET work.males;
+RUN;
+
+/* copy and rename permanent dataset */
+DATA classone.newclassds;
+  SET classone.classds;
+RUN;
+
+
+/* ERRORS */
+
+/* No SET statement */
+DATA work.newmales;
+RUN;
+
+/* Race variable is not initalized */
+DATA distance;
+  miles = 22.06;
+  if race = 1 then ethnicity = "Hispanic";
+RUN;
+
+
+/* Create an arbitrary dataset using datalines*/
 DATA person;
    input name $ dept $;
    datalines;
@@ -226,4 +261,24 @@ DATA work.males (rename = (gender = sex));
 RUN;
 
 PROC CONTENTS DATA = males; RUN;
+
+
+/* Check the length of the variable in characters */
+PROC CONTENTS DATA = work.males;
+RUN;
+
+/* Rename occurs towards the end of all operations */
+DATA work.males (rename = (race = newrace));
+  SET lion.classds;
+/*   Should we also keep ethnicity? Yes */
+  KEEP gender race age borough;
+  WHERE gender = 1;
+  LENGTH ethnicity VARCHAR(12);
+
+  IF race = 1 then ethnicity = "Hispanic";
+  ELSE IF race = 2 then ethnicity = "White";
+  ELSE IF race = 3 then ethnicity = "Black";
+/*   Is sex included in the final dataset? */
+  sex = gender;
+RUN;
 
