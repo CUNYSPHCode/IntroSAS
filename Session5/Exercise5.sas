@@ -6,7 +6,9 @@ Create a new, temporary data set from the permanent "classds" that is limited
 to just females.
 
 Use the CATX function to create a new ID variable that consists of variables
-'pob' and 'uniqueid', separated by a period (e.g.,  pob.uniqueid)
+'pob' and 'uniqueid', separated by a period (e.g. in pseudocode the string
+would look like: "<pob>.<uniqueid>"). Make sure to PROC PRINT the variable to
+see the results.
 
 Use the COMPRESS function to eliminate spaces in the new ID variable.
 
