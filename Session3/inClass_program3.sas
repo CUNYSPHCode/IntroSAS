@@ -1,16 +1,8 @@
-/* libname duck "S:\github\IntroSAS\datasets"; */
-libname duck "/folders/myshortcuts/SASUniversityEdition/IntroSAS/datasets";
+libname classone "/home/u39524524/sasuser.v94/Data";
 
-DATA work.newdata;
-  SET duck.classds;
-RUN;
-
-/* writing a permanent dataset */
-/* Your WANT will change to a permanent location */
-
-DATA duck.newMales;
-  SET work.newdata;
-  WHERE males = 1;
+DATA work.males;
+  SET classone.classds;
+  where gender = 1; 
 RUN;
 
 /* Distinguish between all the data movements */
@@ -19,22 +11,22 @@ RUN;
 
 /* create newmales permanent dataset */
 DATA classone.newmales;
-  SET work.males;
+  SET work.males; 
 RUN;
 
 /* typical import procedure */
 DATA work.classds;
-  SET classone.classds;
+  SET classone.classds; 
 RUN;
 
 /* copy and rename temporary dataset */
 DATA work.newmales;
-  SET work.males;
+  SET work.males; 
 RUN;
 
 /* copy and rename permanent dataset */
 DATA classone.newclassds;
-  SET classone.classds;
+  SET classone.classds; 
 RUN;
 
 
@@ -47,12 +39,15 @@ RUN;
 /* Race variable is not initalized */
 DATA distance;
   miles = 22.06;
-  if race = 1 then ethnicity = "Hispanic";
+  if race = 1 then ethnicity = "Hispanic"; 
 RUN;
 
 
+
+
+
 /* Create an arbitrary dataset using datalines*/
-DATA person;
+DATA work.person;
    input name $ dept $;
    datalines;
 John Sales
@@ -63,7 +58,7 @@ PROC CONTENTS DATA = person;
 RUN;
 
 /*Add example mice dataset*/
-DATA mice;
+DATA work.mice;
   input bwt gestation parity;
   label bwt = "bodyweight";
   datalines;
@@ -93,11 +88,18 @@ DATA mice (rename=(bwt = bodyweight));
 SET mice;
 RUN;
 
+DATA work.mice; 
+SET work.mice;
+/* rename bwt to bodyweight */
+bodyweight = bwt; 
+RUN;
+
+
 
 /*modify the parity variable in a new one*/
 DATA mice;
 SET mice;
-nparity = parity+1;
+  nparity = parity + 1;
 RUN;
 
 PROC PRINT DATA = mice (OBS = 10);
@@ -165,15 +167,15 @@ title2 'select variables from class dataset';
 Footnote1 'Draft for distribution';
 Footnote2 'Copyright not reserved';
 PROC PRINT DATA=newdata2 (obs=20) label double n;
-	var fakedob oldgender race;
-	id uniqueid;
+    var fakedob oldgender race;
+    id uniqueid;
 RUN;
 
 /*Note that using obs together with noobs*/
 /* options will give you an error*/
 PROC PRINT data=newdata2 noobs (obs=20) label double n;
-	var fakedob oldgender race;
-	id uniqueid;
+    var fakedob oldgender race;
+    id uniqueid;
 RUN;
 /*Also, note that using n with obs*/
 /*will limit n to the number of obs*/
@@ -223,17 +225,17 @@ DATA work.mytemp;
 RUN;
 
 DATA work.mytemp;
-	SET lion.classds;
+    SET lion.classds;
 RUN;
 
 /*Run data steps keeping intermediate datasets*/
 DATA work.males;
-	SET lion.classds;
-	WHERE gender = 1;
+    SET lion.classds;
+    WHERE gender = 1;
 RUN;
 
 DATA work.males1 (rename= (gender = sex));
-	SET work.males;
+    SET work.males;
 RUN;
 
 DATA males2;
@@ -242,22 +244,22 @@ RUN;
 
 /*alternatively combine steps into one data step*/
 DATA work.males (rename = (gender = sex));
-	SET lion.classds;
-	WHERE gender = 1;
+    SET lion.classds;
+    WHERE gender = 1;
 RUN;
 
 /*ERROR below*/
 DATA work.males ;
-/*	rename occurs before processing*/
-	SET lion.classds (rename = (gender = sex));
-	WHERE gender = 1;
-/*	ERROR: Variable gender is not on file LION.CLASSDS.*/
+/*  rename occurs before processing*/
+    SET lion.classds (rename = (gender = sex));
+    WHERE gender = 1;
+/*  ERROR: Variable gender is not on file LION.CLASSDS.*/
 RUN;
 
-/*	rename occurs after processing*/
+/*  rename occurs after processing*/
 DATA work.males (rename = (gender = sex));
-	SET lion.classds ;
-	WHERE gender = 1;
+    SET lion.classds ;
+    WHERE gender = 1;
 RUN;
 
 PROC CONTENTS DATA = males; RUN;
@@ -274,11 +276,17 @@ DATA work.males (rename = (race = newrace));
   KEEP gender race age borough;
   WHERE gender = 1;
   LENGTH ethnicity VARCHAR(12);
-
+  
   IF race = 1 then ethnicity = "Hispanic";
   ELSE IF race = 2 then ethnicity = "White";
   ELSE IF race = 3 then ethnicity = "Black";
 /*   Is sex included in the final dataset? */
-  sex = gender;
-RUN;
+  sex = gender; 
+RUN; 
+
+
+
+
+
+
 
